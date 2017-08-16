@@ -3,14 +3,20 @@ from sklearn.datasets import load_iris
 from sklearn import tree
 
 
-def train():
+def train(X, Y):
     clf = tree.DecisionTreeClassifier()
-    clf = clf.fit(IRIS.data, IRIS.target)
+    clf = clf.fit(X, Y)
     return clf
 
+# overwrite this method for your use case
+# 
+def load_data_for_training():
+    return load_iris()
 
-IRIS = load_iris()
-CLF = train()
+
+X, Y = load_data_for_training()
+
+CLF = train(training_data)
 
 
 app = Flask(__name__)

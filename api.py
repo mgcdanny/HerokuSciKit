@@ -18,7 +18,7 @@ def load_data_for_training():
 
 X, Y = load_data_for_training()
 
-CLF = train(training_data)
+CLF = train(X, Y)
 
 
 @app.route("/")

@@ -1,17 +1,19 @@
 from flask import Flask, request, jsonify
 from sklearn.datasets import load_iris
 from sklearn import tree
+app = Flask(__name__)
 
 
+# overwrite this method for your use case
 def train(X, Y):
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(X, Y)
     return clf
 
 # overwrite this method for your use case
-# 
 def load_data_for_training():
-    return load_iris()
+    iris = load_iris()
+    return iris.data, iris.target
 
 
 X, Y = load_data_for_training()
@@ -19,11 +21,15 @@ X, Y = load_data_for_training()
 CLF = train(training_data)
 
 
-app = Flask(__name__)
-
 @app.route("/")
 def home():
-    return "Hello World!"
+    return """
+    Iris Prediction Service:
+
+    curl -H "Content-Type: application/json"  -d '{"data": [1,2,3,1]}' https://heroku-predict.herokuapp.com/api/predict
+
+    """
+
 
 @app.route("/api/predict", methods=["POST"])
 def predict():

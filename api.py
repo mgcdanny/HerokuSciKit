@@ -52,7 +52,7 @@ def home():
     return """
     Iris Prediction Service:
 
-    curl -H "Content-Type: application/json"  -d '{"data": [1,2,3,1]}' https://heroku-predict.herokuapp.com/api/predict
+    curl -H "Content-Type: application/json"  -d '{{"data": [1,2,3,1]}}' https://heroku-predict.herokuapp.com/api/predict
     
     {}
 
